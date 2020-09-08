@@ -25,7 +25,7 @@ class s2huffman
 			foreach(['G'=>')]', 'H'=>'([', 'I'=>'))', 'J'=>'((', 'K'=>']]', 'L'=>'[[', 'M'=>'","', ']'=>'"]', ']"'=>']', '['=>'["', '"['=>'['] as $k=>$v)$e[0] = str_replace($k, $v, $e[0]);
 			if($e[0] = json_decode($e[0]))
 			{
-				$lu = str_pad(implode(array_map(function($s){ return str_pad(decbin(hexdec($s)), 8, '0', STR_PAD_LEFT); }, str_split(substr($e[1], 4), 2))), hexdec(substr($e[1], 0, 4)), '0', STR_PAD_LEFT);
+				$lu = substr(($lu = implode(array_map(function($s){ return str_pad(decbin(hexdec($s)), 8, '0', STR_PAD_LEFT); }, str_split(substr($e[1], 4), 2)))), strlen($lu)-hexdec(substr($e[1], 0, 4)));
 				$ptr = &$e[0];foreach(str_split($lu) as $o)if(is_string($ptr[$o])){ $result.=chr(hexdec($ptr[$o])); $ptr = &$e[0]; } else $ptr = &$ptr[$o];
 			};							
 		};
