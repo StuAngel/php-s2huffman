@@ -8,7 +8,7 @@ class s2huffman
 		$s = array_map(function($s){ return str_pad(dechex(ord($s)), 2, '0', STR_PAD_LEFT);  }, str_split($s));
 		foreach($s as $h)$t[$h] = (empty($t[$h])?1:$t[$h]+1);
 		foreach($t as $v=>$i){ $o[] = [$i, $v]; $t[$v] = ''; };
-		while($o&&usort($o, function($a, $b){ return hexdec($b[0])>hexdec($a[0]);  }))
+		while($o&&usort($o, function($a, $b){ return ($a[0]==$b[0]?$a[1]<$b[1]:$b[0]>$a[0]);  }))
 			if(($result = array_pop($o))&&($_r = array_pop($o)))$o[] = [$result[0]+$_r[0], array_slice($result, 1), array_slice($_r, 1)];
 		$result = array_slice($result, 1); $this->clean($result, $t); 
 		for($i = count($s); $i--;)$s[$i] = $t[$s[$i]]; $s = implode($s);
